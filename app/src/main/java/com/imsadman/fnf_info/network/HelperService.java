@@ -9,8 +9,9 @@ public class HelperService {
 
     private static final String TAG = Activity.class.getSimpleName();
 
+    /*TODO: FUCK-IT Change API and Entites*/
     private static Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://127.0.0.1:8000/")
+            .baseUrl("http://10.0.2.2:8000/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 

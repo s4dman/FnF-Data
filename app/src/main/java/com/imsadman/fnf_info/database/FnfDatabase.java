@@ -2,11 +2,20 @@ package com.imsadman.fnf_info.database;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = FnfEntity.class, version = 1)
+import com.imsadman.fnf_info.network.HelperService;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Response;
+
+@Database(entities = FnfEntity.class, version = 2, exportSchema = false)
 public abstract class FnfDatabase extends RoomDatabase {
 
     public abstract FnfDao fnfDao();
@@ -28,37 +37,17 @@ public abstract class FnfDatabase extends RoomDatabase {
         return fnfDatabaseInstance;
     }
 
-//    public static synchronized FnfDatabase getInstance(Context context) {
-//
-//    }
 
-//    private static RoomDatabase.Callback roomCallback = new Callback() {
-//        @Override
-//        public void onCreate(@NonNull SupportSQLiteDatabase db) {
-//            super.onCreate(db);
-//            generateDb(fnfDatabaseInstance);
-//        }
-//
-//    };
-//
-//
-//    private static void generateDb(FnfDatabase fnfDatabaseInstance) {
-//        FnfDao mFnfDao = null;
-//
-//        Call<List<FnfEntity>> getCall = HelperService.getFnfAPI().getFriends();
-//
-//        getCall.enqueue(new retrofit2.Callback<List<FnfEntity>>() {
-//            @Override
-//            public void onResponse(Call<List<FnfEntity>> call, Response<List<FnfEntity>> response) {
-//                if (response.isSuccessful() && response.body() != null) {
-//                    mFnfDao.insert(response.body());
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<FnfEntity>> call, Throwable t) {
-//
-//            }
-//        });
-//    }
+    /**
+     * Override the onOpen method to populate the database.
+     * For this sample, we clear the database every time it is created or opened.
+     */
+    private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
+
+        @Override
+        public void onOpen(@NonNull SupportSQLiteDatabase db) {
+            super.onOpen(db);
+        }
+    };
+
 }
