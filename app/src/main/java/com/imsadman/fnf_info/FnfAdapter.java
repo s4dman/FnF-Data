@@ -15,9 +15,9 @@ import java.util.List;
 
 class FnfAdapter extends RecyclerView.Adapter<FnfAdapter.ViewHolder> {
     private Context mContext;
-    private List<FnfEntity> mFnfEntities;
+    private List<FnfModel> mFnfEntities;
 
-    public FnfAdapter(Context mContext, List<FnfEntity> mFnfEntities) {
+    public FnfAdapter(Context mContext, List<FnfModel> mFnfEntities) {
         this.mContext = mContext;
         this.mFnfEntities = mFnfEntities;
     }
@@ -32,7 +32,7 @@ class FnfAdapter extends RecyclerView.Adapter<FnfAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        FnfEntity index = mFnfEntities.get(position);
+        FnfModel index = mFnfEntities.get(position);
         holder.firstName.setText((index.getName()));
         holder.lastName.setText((index.getDob()));
         holder.email.setText((index.getEmail()));

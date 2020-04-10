@@ -2,6 +2,7 @@ package com.imsadman.fnf_info.database;
 
 import android.app.Activity;
 import android.app.Application;
+import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
@@ -27,6 +28,21 @@ public class FnfRepository {
     }
 
     public void insert(FnfEntity fnfEntity) {
+        new insertAsyncTask(mFnfDao).execute();
+    }
 
+    private static class insertAsyncTask extends AsyncTask<FnfEntity, Void, Void> {
+
+        private FnfDao mAsyncTaskDao;
+
+        insertAsyncTask(FnfDao fnfDao) {
+            mAsyncTaskDao = fnfDao;
+        }
+
+        @Override
+        protected Void doInBackground(final FnfEntity... params) {
+            mAsyncTaskDao.insert(params[0]);
+            return null;
+        }
     }
 }
