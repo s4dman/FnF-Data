@@ -1,6 +1,6 @@
-package com.imsadman.fnf_info.Services;
+package com.imsadman.fnf_info.network;
 
-import com.imsadman.fnf_info.FnfEntity;
+import com.imsadman.fnf_info.database.FnfEntity;
 
 import java.util.List;
 

@@ -33,6 +33,8 @@ dependencies {
     //Arch Components
     def lifecycle_version = "2.2.0"
     def room_version = "2.2.5"
+
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
     // LiveData
@@ -42,6 +44,7 @@ dependencies {
     // Annotation processor
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
+
 
     //Retrofit2
     implementation 'com.squareup.retrofit2:retrofit:2.8.1'

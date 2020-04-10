@@ -1,7 +1,10 @@
-package com.imsadman.fnf_info;
+package com.imsadman.fnf_info.database;
+
 import android.app.Activity;
 import android.app.Application;
+
 import androidx.lifecycle.LiveData;
+
 import java.util.List;
 
 public class FnfRepository {
@@ -12,23 +15,18 @@ public class FnfRepository {
     private LiveData<List<FnfEntity>> mAllFnf;
 
     public FnfRepository(Application application) {
-        FnfDatabase fnfDatabase = FnfDatabase.getInstance(application);
+        FnfDatabase fnfDatabase = FnfDatabase.getFnfDatabaseInstance(application);
         mFnfDao = fnfDatabase.fnfDao();
-        mAllFnf = mFnfDao.getAllOrderByFname();
+        mAllFnf = mFnfDao.getAllOrderByName();
     }
 
-    /*TODO: Check only getData
-    * Then post/get data from API
-    * */
+    /* TODO: Check only getData > Then post/get data from API */
 
     public LiveData<List<FnfEntity>> getAllFnf() {
         return mAllFnf;
     }
 
     public void insert(FnfEntity fnfEntity) {
-        addFriend();
-    }
 
-    private void addFriend() {
     }
 }
