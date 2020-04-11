@@ -9,17 +9,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.imsadman.fnf_info.database.FnfEntity;
-
 import java.util.List;
 
 class FnfAdapter extends RecyclerView.Adapter<FnfAdapter.ViewHolder> {
     private Context mContext;
-    private List<FnfModel> mFnfEntities;
+    private List<FnfModel> fnfModelList;
 
-    public FnfAdapter(Context mContext, List<FnfModel> mFnfEntities) {
+    public FnfAdapter(Context mContext, List<FnfModel> fnfModelList) {
         this.mContext = mContext;
-        this.mFnfEntities = mFnfEntities;
+        this.fnfModelList = fnfModelList;
     }
 
     @NonNull
@@ -32,11 +30,11 @@ class FnfAdapter extends RecyclerView.Adapter<FnfAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        FnfModel index = mFnfEntities.get(position);
-        holder.firstName.setText((index.getName()));
-        holder.lastName.setText((index.getDob()));
+        FnfModel index = fnfModelList.get(position);
+        holder.name.setText((index.getName()));
+        holder.dob.setText((index.getDob()));
+        holder.phoneNumber.setText((index.getPhone_number()));
         holder.email.setText((index.getEmail()));
-        holder.phoneNumber.setText((index.getPhoneNumber()));
         holder.facebook.setText((index.getFacebook()));
         holder.instagram.setText((index.getInstagram()));
         holder.address.setText((index.getAddress()));
@@ -46,20 +44,20 @@ class FnfAdapter extends RecyclerView.Adapter<FnfAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return 0;
+        return fnfModelList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView firstName, lastName, email, phoneNumber, facebook, instagram, address, postalCode, city;
+        TextView name, dob, email, phoneNumber, facebook, instagram, address, postalCode, city;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            firstName = itemView.findViewById(R.id.fnf_first_name);
-            lastName = itemView.findViewById(R.id.fnf_last_name);
-            email = itemView.findViewById(R.id.fnf_email);
+            name = itemView.findViewById(R.id.fnf_name);
+            dob = itemView.findViewById(R.id.fnf_dob);
             phoneNumber = itemView.findViewById(R.id.fnf_phone_number);
+            email = itemView.findViewById(R.id.fnf_email);
             facebook = itemView.findViewById(R.id.fnf_facebook);
             instagram = itemView.findViewById(R.id.fnf_instagram);
             address = itemView.findViewById(R.id.fnf_address);

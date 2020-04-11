@@ -28,7 +28,7 @@ public class FnfRepository {
     }
 
     public void insert(FnfEntity fnfEntity) {
-        new insertAsyncTask(mFnfDao).execute();
+        new insertAsyncTask(mFnfDao).execute(fnfEntity);
     }
 
     private static class insertAsyncTask extends AsyncTask<FnfEntity, Void, Void> {
