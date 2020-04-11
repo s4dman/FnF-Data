@@ -14,7 +14,7 @@ import retrofit2.http.POST;
 
 public interface FnfAPI {
 
-    @GET("friends")
+    @GET("friends/")
     Call<List<FnfModel>> getFriends(@Header("Authorization") String authToken);
 
     @POST("friends")

@@ -47,14 +47,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getFnf() {
-        authToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTg2NTAxNTM0LCJqdGkiOiI2YjM0ZmY3YjY5NDc0MjBhOTM4OTlkY2E1M2UwZTJkMCIsInVzZXJfaWQiOjF9.hgeyiqRnZEblgJb-E52JyY53TIdvXnbY_4c_E8xOzzo";
+        authToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTg2NTc0OTg2LCJqdGkiOiIyNGU1ZDJiMDMxYTM0MTY2OTc5OGFkOGFjYjFkYmFkOCIsInVzZXJfaWQiOjJ9.Qe9DyRGgQsfPIHCU-mHNUOR81_hpZPuUdgSCs7V48yc";
 
-        Call<List<FnfModel>> fnfCall = HelperService.getFnfAPI().getFriends(authToken);
+        Call<List<FnfModel>> fnfCall = HelperService.getFnfAPI().getFriends("Bearer " + authToken);
 
         fnfCall.enqueue(new Callback<List<FnfModel>>() {
             @Override
             public void onResponse(Call<List<FnfModel>> call, Response<List<FnfModel>> response) {
-                Log.d(TAG, "onResponse: " + response.body());
+
                 if (response.isSuccessful() && response != null) {
                     List<FnfModel> fnfModelList = response.body();
                     initFnfView(fnfModelList);
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                         FnfModel position = fnfModelList.get(i);
                         String name = position.getName();
                         String dob = position.getDob();
-                        String phoneNumber = position.getPhoneNumber();
+                        String phoneNumber = position.getPhone_number();
                         String email = position.getEmail();
                         String facebook = position.getFacebook();
                         String instagram = position.getInstagram();
@@ -84,11 +84,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void initFnfView(List<FnfModel> fnfEntityList) {
+    private void initFnfView(List<FnfModel> fnfModelList) {
         LinearLayoutManager FnfLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         RecyclerView FnfRecyclerView = findViewById(R.id.recycler_fnf);
         FnfRecyclerView.setLayoutManager(FnfLayoutManager);
-        FnfAdapter fnfAdapter = new FnfAdapter(this, fnfEntityList);
+        FnfAdapter fnfAdapter = new FnfAdapter(this, fnfModelList);
         FnfRecyclerView.setAdapter(fnfAdapter);
     }
 }

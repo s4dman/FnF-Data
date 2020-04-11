@@ -11,7 +11,7 @@ public class HelperService {
 
     /*TODO: FUCK-IT Change API and Entites*/
     private static Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:8000/")
+            .baseUrl("http://s4dman.pythonanywhere.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
