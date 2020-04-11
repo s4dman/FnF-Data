@@ -14,8 +14,16 @@ import android.util.Log;
 import com.imsadman.fnf_info.database.FnfEntity;
 import com.imsadman.fnf_info.network.HelperService;
 
-import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.List;
+import java.util.Map;
+
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,7 +42,30 @@ public class MainActivity extends AppCompatActivity {
 
         mFnfViewModel = ViewModelProviders.of(this).get(FnfViewModel.class);
         subscribeObserver();
-        getFnf();
+        getAccess();
+    }
+
+    private void getAccess() {
+        Call<ResponseBody> authCall = HelperService.getFnfAPI().auth("s4dman", "baalamar");
+        authCall.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful() && response != null) {
+                    try {
+                        JSONObject authObject = new JSONObject(response.body().string());
+                        authToken = authObject.getString("access");
+                        getFnf(authToken);
+                    } catch (JSONException | IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.d(TAG, "onFailure Auth: " + t.toString());
+            }
+        });
     }
 
     private void subscribeObserver() {
@@ -46,9 +77,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void getFnf() {
-        authToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTg2NTc0OTg2LCJqdGkiOiIyNGU1ZDJiMDMxYTM0MTY2OTc5OGFkOGFjYjFkYmFkOCIsInVzZXJfaWQiOjJ9.Qe9DyRGgQsfPIHCU-mHNUOR81_hpZPuUdgSCs7V48yc";
-
+    private void getFnf(String authToken) {
         Call<List<FnfModel>> fnfCall = HelperService.getFnfAPI().getFriends("Bearer " + authToken);
 
         fnfCall.enqueue(new Callback<List<FnfModel>>() {
