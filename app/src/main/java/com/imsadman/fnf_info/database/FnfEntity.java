@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "fnf")
 public class FnfEntity {
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = false)
     private int id;
     @ColumnInfo(name = "name")
     private String name;
@@ -21,7 +21,8 @@ public class FnfEntity {
     private String postalCode;
     private String city;
 
-    public FnfEntity(String name, String dob, String email, String phoneNumber, String facebook, String instagram, String address, String postalCode, String city) {
+    public FnfEntity(int id, String name, String dob, String email, String phoneNumber, String facebook, String instagram, String address, String postalCode, String city) {
+        this.id = id;
         this.name = name;
         this.dob = dob;
         this.email = email;
@@ -31,10 +32,6 @@ public class FnfEntity {
         this.address = address;
         this.postalCode = postalCode;
         this.city = city;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getId() {

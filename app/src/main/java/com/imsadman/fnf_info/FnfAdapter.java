@@ -37,9 +37,7 @@ class FnfAdapter extends RecyclerView.Adapter<FnfAdapter.ViewHolder> {
         holder.email.setText((index.getEmail()));
         holder.facebook.setText((index.getFacebook()));
         holder.instagram.setText((index.getInstagram()));
-        holder.address.setText((index.getAddress()));
-        holder.postalCode.setText((index.getPostalCode()));
-        holder.city.setText((index.getCity()));
+        holder.location.setText((index.getAddress()));
     }
 
     @Override
@@ -49,7 +47,7 @@ class FnfAdapter extends RecyclerView.Adapter<FnfAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView name, dob, email, phoneNumber, facebook, instagram, address, postalCode, city;
+        TextView name, dob, email, phoneNumber, facebook, instagram, location;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -60,9 +58,7 @@ class FnfAdapter extends RecyclerView.Adapter<FnfAdapter.ViewHolder> {
             email = itemView.findViewById(R.id.fnf_email);
             facebook = itemView.findViewById(R.id.fnf_facebook);
             instagram = itemView.findViewById(R.id.fnf_instagram);
-            address = itemView.findViewById(R.id.fnf_address);
-            postalCode = itemView.findViewById(R.id.fnf_postal_code);
-            city = itemView.findViewById(R.id.fnf_city);
+            location = itemView.findViewById(R.id.fnf_city);
 
         }
     }
