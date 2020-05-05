@@ -9,7 +9,6 @@ public class HelperService {
 
     private static final String TAG = Activity.class.getSimpleName();
 
-    /*TODO: FUCK-IT Change API and Entites*/
     private static Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("http://s4dman.pythonanywhere.com/")
             .addConverterFactory(GsonConverterFactory.create())

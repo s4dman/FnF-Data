@@ -1,6 +1,8 @@
 package com.imsadman.fnf_info;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,9 +39,19 @@ class FnfAdapter extends RecyclerView.Adapter<FnfAdapter.ViewHolder> {
         holder.email.setText((index.getEmail()));
         holder.facebook.setText((index.getFacebook()));
         holder.instagram.setText((index.getInstagram()));
-        holder.address.setText((index.getAddress()));
-        holder.postalCode.setText((index.getPostalCode()));
-        holder.city.setText((index.getCity()));
+        holder.location.setText((index.getAddress()));
+
+        holder.facebook.setOnClickListener(view -> {
+            Uri uri = Uri.parse("https://www.facebook.com/" + index.getFacebook());
+            Intent fbIntent = new Intent(Intent.ACTION_VIEW, uri);
+            mContext.startActivity(fbIntent);
+        });
+
+        holder.instagram.setOnClickListener(view -> {
+            Uri uri = Uri.parse("https://www.instagram.com/" + index.getInstagram());
+            Intent instaIntent = new Intent(Intent.ACTION_VIEW, uri);
+            mContext.startActivity(instaIntent);
+        });
     }
 
     @Override
@@ -49,7 +61,7 @@ class FnfAdapter extends RecyclerView.Adapter<FnfAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView name, dob, email, phoneNumber, facebook, instagram, address, postalCode, city;
+        TextView name, dob, email, phoneNumber, facebook, instagram, location;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -60,9 +72,7 @@ class FnfAdapter extends RecyclerView.Adapter<FnfAdapter.ViewHolder> {
             email = itemView.findViewById(R.id.fnf_email);
             facebook = itemView.findViewById(R.id.fnf_facebook);
             instagram = itemView.findViewById(R.id.fnf_instagram);
-            address = itemView.findViewById(R.id.fnf_address);
-            postalCode = itemView.findViewById(R.id.fnf_postal_code);
-            city = itemView.findViewById(R.id.fnf_city);
+            location = itemView.findViewById(R.id.fnf_city);
 
         }
     }
