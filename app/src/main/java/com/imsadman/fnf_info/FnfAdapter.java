@@ -1,6 +1,8 @@
 package com.imsadman.fnf_info;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +40,18 @@ class FnfAdapter extends RecyclerView.Adapter<FnfAdapter.ViewHolder> {
         holder.facebook.setText((index.getFacebook()));
         holder.instagram.setText((index.getInstagram()));
         holder.location.setText((index.getAddress()));
+
+        holder.facebook.setOnClickListener(view -> {
+            Uri uri = Uri.parse("https://www.facebook.com/" + index.getFacebook());
+            Intent fbIntent = new Intent(Intent.ACTION_VIEW, uri);
+            mContext.startActivity(fbIntent);
+        });
+
+        holder.instagram.setOnClickListener(view -> {
+            Uri uri = Uri.parse("https://www.instagram.com/" + index.getInstagram());
+            Intent instaIntent = new Intent(Intent.ACTION_VIEW, uri);
+            mContext.startActivity(instaIntent);
+        });
     }
 
     @Override
