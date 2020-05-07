@@ -5,7 +5,7 @@ import android.app.Activity;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class HelperService {
+public class Generics {
 
     private static final String TAG = Activity.class.getSimpleName();
 

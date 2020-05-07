@@ -17,21 +17,19 @@ public class FnfViewModel extends AndroidViewModel {
     private static final String TAG = Activity.class.getSimpleName();
 
     private FnfRepository mFnfRepository;
-    private LiveData<List<FnfEntity>> mAllFnf;
+    private LiveData<List<FnfEntity>> mFnfList;
 
     public FnfViewModel(@NonNull Application application) {
         super(application);
         mFnfRepository = new FnfRepository(application);
-        mAllFnf = mFnfRepository.getAllFnf();
+        mFnfList = mFnfRepository.getFnfList();
     }
 
-    public LiveData<List<FnfEntity>> getAllFnf() {
-        return mAllFnf;
+    public void authRequest() {
+        mFnfRepository.authRequest();
     }
 
-    public void insert(FnfEntity fnfEntity) {
-        mFnfRepository.insert(fnfEntity);
+    public LiveData<List<FnfEntity>> getFnfList() {
+        return mFnfList;
     }
-
-
 }
