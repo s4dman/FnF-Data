@@ -10,7 +10,8 @@ Users can store their friends and family's information (dob, email, social handl
 
 [API](https://github.com/s4dman/FnF-REST-API) Endpoints at: http://s4dman.pythonanywhere.com/  
 
-<img src="https://user-images.githubusercontent.com/9642377/81042895-29b5ea00-8e7f-11ea-944c-96da039f2a46.png" />
-
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/9642377/81253235-0eb9b600-8ff6-11ea-8746-e7ff73d4bb9c.png" width="370" height="500"/>
+</p>
 
 **_For learning puporse only!_**
