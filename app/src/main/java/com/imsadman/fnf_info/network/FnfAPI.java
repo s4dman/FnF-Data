@@ -1,6 +1,5 @@
 package com.imsadman.fnf_info.network;
 
-import com.imsadman.fnf_info.FnfModel;
 import com.imsadman.fnf_info.database.FnfEntity;
 
 import java.util.List;
@@ -8,11 +7,13 @@ import java.util.List;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 
 public interface FnfAPI {
 
@@ -21,9 +22,18 @@ public interface FnfAPI {
     Call<ResponseBody> auth(@Field("username") String username, @Field("password") String password);
 
     @GET("friends/")
-    Call<List<FnfModel>> getFriends(@Header("Authorization") String authToken);
+    Call<List<FnfEntity>> getFriends(@Header("Authorization") String authToken);
 
+    /*TODO*/
     @POST("friends")
-    Call<FnfModel> addFriend(@Body FnfEntity fnfEntity);
+    Call<FnfEntity> addFriend(@Body FnfEntity fnfEntity);
+
+    /*TODO*/
+    @PUT("friends")
+    Call<FnfEntity> updateFriend(@Body FnfEntity fnfEntity);
+
+    /*TODO*/
+    @DELETE("friends")
+    Call<FnfEntity> deleteFriend(@Body FnfEntity fnfEntity);
 
 }

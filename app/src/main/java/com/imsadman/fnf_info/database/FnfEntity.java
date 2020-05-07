@@ -14,25 +14,26 @@ public class FnfEntity {
     @ColumnInfo(name = "date_of_birth")
     private String dob;
     private String email;
-    private String phoneNumber;
+    private String phone_number;
     private String facebook;
     private String instagram;
     private String address;
     private String postalCode;
     private String city;
 
-    public FnfEntity(int id, String name, String dob, String email, String phoneNumber, String facebook, String instagram, String address, String postalCode, String city) {
+    public FnfEntity(int id, String name, String dob, String email, String phone_number, String facebook, String instagram, String address, String postalCode, String city) {
         this.id = id;
         this.name = name;
         this.dob = dob;
         this.email = email;
-        this.phoneNumber = phoneNumber;
+        this.phone_number = phone_number;
         this.facebook = facebook;
         this.instagram = instagram;
         this.address = address;
         this.postalCode = postalCode;
         this.city = city;
     }
+
 
     public int getId() {
         return id;
@@ -50,8 +51,8 @@ public class FnfEntity {
         return email;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPhone_number() {
+        return phone_number;
     }
 
     public String getFacebook() {
