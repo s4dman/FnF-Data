@@ -11,13 +11,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.imsadman.fnf_info.database.FnfEntity;
+
 import java.util.List;
 
 class FnfAdapter extends RecyclerView.Adapter<FnfAdapter.ViewHolder> {
     private Context mContext;
-    private List<FnfModel> fnfModelList;
+    private List<FnfEntity> fnfModelList;
 
-    public FnfAdapter(Context mContext, List<FnfModel> fnfModelList) {
+    public FnfAdapter(Context mContext, List<FnfEntity> fnfModelList) {
         this.mContext = mContext;
         this.fnfModelList = fnfModelList;
     }
@@ -32,7 +34,7 @@ class FnfAdapter extends RecyclerView.Adapter<FnfAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        FnfModel index = fnfModelList.get(position);
+        FnfEntity index = fnfModelList.get(position);
         holder.name.setText((index.getName()));
         holder.dob.setText((index.getDob()));
         holder.phoneNumber.setText((index.getPhone_number()));

@@ -4,9 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = Activity.class.getSimpleName();
 
     private String authToken;
-    private List<FnfEntity> mFnfEntityList;
     private FnfViewModel mFnfViewModel;
 
     @Override
@@ -69,40 +66,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void subscribeObserver() {
-        mFnfViewModel.getAllFnf().observe(this, new Observer<List<FnfEntity>>() {
-            @Override
-            public void onChanged(@Nullable List<FnfEntity> fnfEntityList) {
-                mFnfEntityList = fnfEntityList;
-            }
-        });
+        mFnfViewModel.getAllFnf().observe(this, fnfEntityList ->
+                initFnfView(fnfEntityList)
+        );
     }
 
     private void getFnf(String authToken) {
-        Call<List<FnfModel>> fnfCall = HelperService.getFnfAPI().getFriends("Bearer " + authToken);
 
-        fnfCall.enqueue(new Callback<List<FnfModel>>() {
+        Call<List<FnfEntity>> fnfCall = HelperService.getFnfAPI().getFriends("Bearer " + authToken);
+        fnfCall.enqueue(new Callback<List<FnfEntity>>() {
             @Override
-            public void onResponse(Call<List<FnfModel>> call, Response<List<FnfModel>> response) {
-
+            public void onResponse(Call<List<FnfEntity>> call, Response<List<FnfEntity>> response) {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
-                        List<FnfModel> fnfModelList = response.body();
-                        initFnfView(fnfModelList);
-
-                        for (int i = 0; i < fnfModelList.size(); i++) {
-                            FnfModel position = fnfModelList.get(i);
-                            int id = position.getId();
-                            String name = position.getName();
-                            String dob = position.getDob();
-                            String phoneNumber = position.getPhone_number();
-                            String email = position.getEmail();
-                            String facebook = position.getFacebook();
-                            String instagram = position.getInstagram();
-                            String address = position.getAddress();
-                            String postalCode = position.getPostalCode();
-                            String city = position.getCity();
-
-                            FnfEntity fnfEntity = new FnfEntity(id, name, dob, email, phoneNumber, facebook, instagram, address, postalCode, city);
+                        List<FnfEntity> fnfEntityList = response.body();
+                        for (FnfEntity fnfEntity : fnfEntityList) {
                             mFnfViewModel.insert(fnfEntity);
                         }
                     }
@@ -110,13 +88,13 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<FnfModel>> call, Throwable t) {
-                Log.d(TAG, "getFnf() onFailure: " + t.toString());
+            public void onFailure(Call<List<FnfEntity>> call, Throwable t) {
+
             }
         });
     }
 
-    private void initFnfView(List<FnfModel> fnfModelList) {
+    private void initFnfView(List<FnfEntity> fnfModelList) {
         LinearLayoutManager FnfLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         RecyclerView FnfRecyclerView = findViewById(R.id.recycler_fnf);
         FnfRecyclerView.setLayoutManager(FnfLayoutManager);
