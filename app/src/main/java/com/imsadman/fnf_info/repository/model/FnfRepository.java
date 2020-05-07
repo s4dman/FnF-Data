@@ -1,4 +1,4 @@
-package com.imsadman.fnf_info.database;
+package com.imsadman.fnf_info.repository.model;
 
 import android.app.Activity;
 import android.app.Application;
@@ -7,7 +7,10 @@ import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
-import com.imsadman.fnf_info.network.Generics;
+import com.imsadman.fnf_info.repository.model.FnfDao;
+import com.imsadman.fnf_info.repository.model.FnfDatabase;
+import com.imsadman.fnf_info.repository.model.FnfEntity;
+import com.imsadman.fnf_info.utils.Generics;
 
 import org.json.JSONException;
 import org.json.JSONObject;

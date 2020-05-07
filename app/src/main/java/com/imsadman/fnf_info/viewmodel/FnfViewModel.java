@@ -1,4 +1,4 @@
-package com.imsadman.fnf_info;
+package com.imsadman.fnf_info.viewmodel;
 
 import android.app.Activity;
 import android.app.Application;
@@ -7,8 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.imsadman.fnf_info.database.FnfEntity;
-import com.imsadman.fnf_info.database.FnfRepository;
+import com.imsadman.fnf_info.repository.model.FnfEntity;
+import com.imsadman.fnf_info.repository.model.FnfRepository;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.imsadman.fnf_info.database;
+package com.imsadman.fnf_info.repository.model;
 
 import android.content.Context;
 

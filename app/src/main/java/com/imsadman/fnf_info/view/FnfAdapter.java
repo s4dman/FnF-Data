@@ -1,4 +1,4 @@
-package com.imsadman.fnf_info;
+package com.imsadman.fnf_info.view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,7 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.imsadman.fnf_info.database.FnfEntity;
+import com.imsadman.fnf_info.R;
+import com.imsadman.fnf_info.repository.model.FnfEntity;
 
 import java.util.List;
 

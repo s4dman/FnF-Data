@@ -1,6 +1,8 @@
-package com.imsadman.fnf_info.network;
+package com.imsadman.fnf_info.utils;
 
 import android.app.Activity;
+
+import com.imsadman.fnf_info.repository.FnfAPI;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

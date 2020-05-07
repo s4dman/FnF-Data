@@ -1,4 +1,4 @@
-package com.imsadman.fnf_info.database;
+package com.imsadman.fnf_info.repository.model;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
@@ -7,6 +7,8 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
+
+import com.imsadman.fnf_info.repository.model.FnfEntity;
 
 import java.util.List;
 

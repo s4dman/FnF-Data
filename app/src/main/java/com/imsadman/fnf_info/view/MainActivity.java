@@ -1,18 +1,20 @@
-package com.imsadman.fnf_info;
+package com.imsadman.fnf_info.view;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.imsadman.fnf_info.database.FnfEntity;
+import com.imsadman.fnf_info.R;
+import com.imsadman.fnf_info.repository.model.FnfEntity;
+import com.imsadman.fnf_info.viewmodel.FnfViewModel;
 
 import java.util.List;
 
@@ -39,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
         MenuItem addItem = menu.findItem(R.id.action_add);
 
         addItem.setOnMenuItemClickListener(menuItem -> {
-            /*TODO -> Add new fnf*/
-            Toast.makeText(MainActivity.this, "Add new", Toast.LENGTH_SHORT).show();
+            Intent addIntent = new Intent(this, NewFnfActivity.class);
+            startActivity(addIntent);
             return true;
         });
         return super.onCreateOptionsMenu(menu);
